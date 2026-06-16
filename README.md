@@ -308,7 +308,7 @@ Hierarchical clustering visualizations for every filtration.
 Location:
 
 ```text
-output/dendrograms/
+output*/rrrr_mm_dd/dendrograms/
 ```
 
 ---
@@ -320,7 +320,7 @@ Generated for all 2D filtrations.
 Location:
 
 ```text
-output*/rrrr_mm_dd_hh-mm-ss/ecp_plots/
+output*/rrrr_mm_dd/ecp_plots/
 ```
 
 ---
@@ -332,7 +332,7 @@ Saved as NumPy arrays.
 Location:
 
 ```text
-output*/rrrr_mm_dd_hh-mm-ss/*/*_distance_matrix.npy
+output*/rrrr_mm_dd/*/distance_matrices/
 ```
 
 ---
@@ -344,8 +344,7 @@ Optional streamplot visualizations.
 Location:
 
 ```text
-output*/rrrr_mm_dd_hh-mm-ss/phase_clean/
-output*/rrrr_mm_dd_hh-mm-ss/phase_noisy/
+output*/rrrr_mm_dd/phase_portraits/
 ```
 
 ---
@@ -355,7 +354,7 @@ output*/rrrr_mm_dd_hh-mm-ss/phase_noisy/
 All computed distance matrices are collected into:
 
 ```text
-output*/rrrr_mm_dd_hh-mm-ss/npz/all_results.npz
+output*/rrrr_mm_dd/all_results.npz
 ```
 
 ---
