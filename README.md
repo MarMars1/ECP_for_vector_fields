@@ -403,13 +403,6 @@ Main packages:
 - pyEulerCurves
 - tqdm
 
-Optional development tools:
-
-- pytest
-- black
-- isort
-- ruff
-- mypy
 
 ---
 
