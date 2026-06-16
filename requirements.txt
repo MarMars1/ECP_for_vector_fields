@@ -1,0 +1,12 @@
+numpy>=1.26
+scipy>=1.13
+matplotlib>=3.9
+plotly>=5.24
+pyEulerCurves
+tqdm>=4.66
+
+pytest>=8.3
+black>=24.10
+isort>=5.13
+ruff>=0.8
+mypy>=1.13
