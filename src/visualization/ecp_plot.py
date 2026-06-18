@@ -5,8 +5,8 @@ ECP visualization.
 import matplotlib.pyplot as plt
 import numpy as np
 from pathlib import Path
-from matplotlib import cm
 from matplotlib import colors
+import matplotlib as mpl
 
 
 def ec_at_bifiltration(
@@ -177,10 +177,7 @@ def save_ecp_plot_2(
 
     levels = np.arange(-5, 6)
 
-    cmap = cm.get_cmap(
-        "gist_rainbow",
-        len(levels),
-    )
+    cmap = mpl.colormaps["gist_rainbow"].resampled(len(levels))
 
     boundaries = np.arange(
         levels[0] - 0.5,
@@ -207,11 +204,10 @@ def save_ecp_plot_2(
         colorbar=False,
     )
 
-    sm = cm.ScalarMappable(
+    sm = mpl.cm.ScalarMappable(
         norm=norm,
         cmap=cmap,
     )
-
     cbar = plt.colorbar(
         sm,
         ax=ax,
