@@ -414,8 +414,3 @@ If this framework contributes to published research, please cite:
 - pyEulerCurves package
 - this repository
 
----
-
-# License
-
-MIT License
