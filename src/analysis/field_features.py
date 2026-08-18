@@ -1,9 +1,8 @@
 """
-Field feature extraction (FIXED VERSION)
+Field feature extraction
 """
 
 import numpy as np
-
 
 def gradients_from_uv(u, v):
     """
