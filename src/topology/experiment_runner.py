@@ -1,5 +1,5 @@
 """
-FULL experiment runner - exact reproduction of original pipeline:
+FULL experiment runner
 
 ✔ clean / noisy / full
 ✔ vector + div + curl + angle + eigs
@@ -116,13 +116,10 @@ def save_classical_results(
                 f"{dendrogram_path}"
             )
 
-# =========================================================
-# NOISE
-# =========================================================
-
+#NOISE
 def add_noise(examples, noise_fraction: float):
     """
-    Add Gaussian noise proportional to std (same as original code).
+    Add Gaussian noise proportional to std
     """
     noisy = []
 
@@ -135,10 +132,7 @@ def add_noise(examples, noise_fraction: float):
     return noisy
 
 
-# =========================================================
-# FIELD TRANSFORMATIONS (THIS WAS MISSING IN YOUR RUNNER)
-# =========================================================
-
+#FIELD TRANSFORMATIONS
 def build_all_filtrations(examples):
     """
     Build all filtrations exactly like original pipeline.
@@ -182,10 +176,7 @@ def build_all_filtrations(examples):
     return result
 
 
-# =========================================================
-# ECP PIPELINE WRAPPER
-# =========================================================
-
+#ECP PIPELINE WRAPPER
 def run_all_ecp_modes(
     filtrations: dict,
     names,
@@ -193,7 +184,7 @@ def run_all_ecp_modes(
     prefix: str,
 ):
     """
-    Run ECP pipeline for ALL filtrations (this is what original code did manually).
+    Run ECP pipeline for ALL filtrations.
     """
 
     results = {}
@@ -221,10 +212,7 @@ def run_all_ecp_modes(
     return results
 
 
-# =========================================================
-# CLASSICAL DISTANCES
-# =========================================================
-
+#CLASSICAL DISTANCES
 def run_classical_metrics(examples, noisy_examples, full_examples):
 
     metrics = {
@@ -246,10 +234,7 @@ def run_classical_metrics(examples, noisy_examples, full_examples):
     return results
 
 
-# =========================================================
-# MAIN EXPERIMENT (FULL REPLICA)
-# =========================================================
-
+#MAIN EXPERIMENT
 def run_full_experiment(
     X,
     Y,
@@ -285,10 +270,7 @@ def run_full_experiment(
     noisy_examples = []
     full_examples = []
 
-    # =====================================================
-    # CLEAN
-    # =====================================================
-
+    #CLEAN
     if (
         ExperimentMode.CLEAN in modes
         or ExperimentMode.FULL in modes
@@ -315,9 +297,8 @@ def run_full_experiment(
                 output_dir=output_dir / "phase_portraits",
             )
 
-    # =====================================================
-    # NOISY
-    # =====================================================
+
+    #NOISY
     if (
         ExperimentMode.NOISY in modes
         or ExperimentMode.FULL in modes
@@ -355,9 +336,7 @@ def run_full_experiment(
                 output_dir=output_dir / "phase_portraits",
             )
 
-    # =====================================================
-    # FULL
-    # =====================================================
+    #FULL
     if ExperimentMode.FULL in modes:
 
         print("Running FULL dataset...")
@@ -383,10 +362,8 @@ def run_full_experiment(
             prefix="full",
         )
 
-    # =====================================================
-    # CLASSICAL METRICS
-    # =====================================================
 
+    #CLASSICAL METRICS
     classical = {}
 
     if ExperimentMode.FULL in modes:
@@ -429,10 +406,7 @@ def run_full_experiment(
             }.items()
         }
 
-    # ==========================================
-    # SAVE CLASSICAL DENDROGRAMS
-    # ==========================================
-
+    #SAVE CLASSICAL DENDROGRAMS
     if ExperimentMode.CLEAN in modes:
 
         save_classical_results(
@@ -487,10 +461,8 @@ def run_full_experiment(
             prefix="full",
         )
 
-    # =====================================================
-    # SAVE NPZ
-    # =====================================================
 
+    #SAVE NPZ
     npz_data = {}
 
     for key, value in clean_results.items():
