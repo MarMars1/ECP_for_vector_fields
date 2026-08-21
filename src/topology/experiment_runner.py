@@ -133,7 +133,7 @@ def add_noise(examples, noise_fraction: float):
 
 
 #FIELD TRANSFORMATIONS
-def build_all_filtrations(examples):
+def build_all_filtrations(examples, X, Y):
     """
     Build all filtrations exactly like original pipeline.
     """
@@ -147,7 +147,8 @@ def build_all_filtrations(examples):
     for ex in examples:
         ex = normalize_field(ex, NORMALIZATION_MODE)
 
-        field_div, field_curl, field_angle, field_eigs = compute_field(ex)
+        field_div, field_curl, field_angle, field_eigs = compute_field(ex, X, Y)
+
         
         vector.append(ex)
         div.append(field_div)
@@ -279,7 +280,7 @@ def run_full_experiment(
         print("Running CLEAN pipeline...")
 
         clean_filtrations = build_all_filtrations(
-            examples
+            examples, X, Y,
         )
 
         clean_results = run_all_ecp_modes(
@@ -317,7 +318,7 @@ def run_full_experiment(
         ]
 
         noisy_filtrations = build_all_filtrations(
-            noisy_examples
+            noisy_examples, X, Y,
         )
 
         noisy_results = run_all_ecp_modes(
@@ -352,7 +353,7 @@ def run_full_experiment(
         )
 
         full_filtrations = build_all_filtrations(
-            full_examples
+            full_examples, X, Y,
         )
 
         full_results = run_all_ecp_modes(
