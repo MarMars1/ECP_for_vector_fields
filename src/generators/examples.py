@@ -89,22 +89,6 @@ EXAMPLES: dict[str, LinearSystem] = {
             d=1.0
         ),
 
-    "saddle 3":
-        LinearSystem(
-            a=2.0,
-            b=1.0,
-            c=-1.0,
-            d=-2.0
-        ),
-
-    "saddle 4":
-        LinearSystem(
-            a=-2.0,
-            b=-1.0,
-            c=1.0,
-            d=2.0
-        ),
-
     # -------------------------
     # Stable focuses
     # -------------------------
