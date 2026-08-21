@@ -1,6 +1,9 @@
 """
 Global configuration.
 """
+import matplotlib
+
+matplotlib.use("Agg")
 
 from pathlib import Path
 from enum import Enum
