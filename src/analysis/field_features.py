@@ -4,16 +4,20 @@ Field feature extraction
 
 import numpy as np
 
-def gradients_from_uv(u, v):
-    """
-    Compute spatial gradients assuming grid spacing = 1.
+def gradients_from_uv(u, v, X, Y, edge_order=1):
+    du_dy, du_dx = np.gradient(
+        u,
+        Y[:, 0],
+        X[0, :],
+        edge_order=edge_order
+    )
 
-    IMPORTANT:
-    We assume u, v already live on a regular grid.
-    """
-
-    du_dy, du_dx = np.gradient(u)
-    dv_dy, dv_dx = np.gradient(v)
+    dv_dy, dv_dx = np.gradient(
+        v,
+        Y[:, 0],
+        X[0, :],
+        edge_order=edge_order
+    )
 
     return du_dx, du_dy, dv_dx, dv_dy
 
@@ -28,7 +32,7 @@ def eigs_2x2(a, b, c, d):
     return lam1, lam2
 
 
-def compute_field(ex):
+def compute_field(ex, X, Y):
     """
     ex: (H, W, 2) vector field
     """
@@ -36,7 +40,9 @@ def compute_field(ex):
     u = ex[:, :, 0]
     v = ex[:, :, 1]
 
-    du_dx, du_dy, dv_dx, dv_dy = gradients_from_uv(u, v)
+    du_dx, du_dy, dv_dx, dv_dy = gradients_from_uv(
+        u, v, X, Y
+    )
 
     du_dx = np.nan_to_num(du_dx)
     du_dy = np.nan_to_num(du_dy)
@@ -59,4 +65,4 @@ def compute_field(ex):
         axis=-1
     )
 
-    return field_div, field_curl, field_angle, field_eigs
+    return field_div, field_curl, field_angle, field_eigs 
