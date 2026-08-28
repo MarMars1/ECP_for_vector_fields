@@ -110,7 +110,7 @@ $$
 The divergence and curl are computed as
 
 $$
-\operatorname{div} F =
+\mathrm{div} F =
 \frac{\partial u}{\partial x}
 +
 \frac{\partial v}{\partial y},
@@ -119,7 +119,7 @@ $$
 and
 
 $$
-\operatorname{curl} F =
+\mathrm{curl} F =
 \frac{\partial v}{\partial x}
 -
 \frac{\partial u}{\partial y}.
@@ -128,16 +128,16 @@ $$
 The angle filtration is defined as
 
 $$
-\theta = \operatorname{atan2}(v,u).
+\theta = \mathrm{atan2}(v,u).
 $$
 
 The eigenvalue filtration contains
 
 $$
-(\operatorname{Re}\lambda_1,
- \operatorname{Im}\lambda_1,
- \operatorname{Re}\lambda_2,
- \operatorname{Im}\lambda_2).
+(\mathrm{Re}\lambda_1,
+ \mathrm{Im}\lambda_1,
+ \mathrm{Re}\lambda_2,
+ \mathrm{Im}\lambda_2).
 $$
 
 ---
@@ -251,14 +251,14 @@ Implementation: src/metrics/distance.py
 project/
 │
 ├── README.md
-├── requirements.txt
 ├── experiment.toml
+├── requirements.txt
 │
 └── src/
     │
+    ├── config.py
     ├── main.py
     ├── runner.py
-    ├── config.py
     │
     ├── analysis/
     │   ├── __init__.py
@@ -266,6 +266,7 @@ project/
     │   └── normalization.py
     │
     ├── systems/
+    │   ├── README_SYSTEMS.md
     │   ├── __init__.py
     │   ├── examples_FHN.py
     │   ├── examples_HB.py
@@ -289,7 +290,6 @@ project/
     │   ├── config_snapshot.py
     │   ├── experiment.py
     │   ├── io.py
-    │   ├── logger.py
     │   └── noise.py
     │
     └── visualization/
