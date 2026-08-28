@@ -1,6 +1,6 @@
 """
 Features derived from vector fields.
-
+ 
 For a 2D vector field:
 
     field[..., 0] = u
