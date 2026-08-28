@@ -1,12 +1,15 @@
 """
 ECP visualization.
 """
+import matplotlib
+
+matplotlib.use("Agg")
 
 import matplotlib.pyplot as plt
 import numpy as np
 from pathlib import Path
+from matplotlib import cm
 from matplotlib import colors
-import matplotlib as mpl
 
 
 def ec_at_bifiltration(
@@ -95,8 +98,6 @@ def plot_ecp(
     return ax
 
 
-
-#from src.topology.ecp import plot_ECP
 def save_ecp_plot(
     contributions,
     dims,
@@ -136,16 +137,7 @@ def save_ecp_plot(
         dpi=300,
     )
 
-    #save_ecp_plot_2(
-    #    contributions=contributions,
-    #    output_file=output_file,
-    #    xlim = (-5, 2),
-    #    ylim = (-5, 2),
-    #)
-        
-
     plt.close(fig)
-
     print(f"[SAVE] ECP plot      -> {output_file}")
 
 
@@ -157,8 +149,7 @@ def save_ecp_plot_2(
     """
     Save Euler Characteristic Profile plot.
 
-    This function reproduces the original plotting style
-    used in the legacy implementation.
+    This function reproduces the original plotting style used in the legacy implementation.
 
     Parameters
     ----------
@@ -177,7 +168,7 @@ def save_ecp_plot_2(
 
     levels = np.arange(-5, 6)
 
-    cmap = mpl.colormaps["gist_rainbow"].resampled(len(levels))
+    cmap = plt.colormaps.get_cmap("gist_rainbow").resampled(len(levels))
 
     boundaries = np.arange(
         levels[0] - 0.5,
@@ -204,10 +195,11 @@ def save_ecp_plot_2(
         colorbar=False,
     )
 
-    sm = mpl.cm.ScalarMappable(
+    sm = cm.ScalarMappable(
         norm=norm,
         cmap=cmap,
     )
+
     cbar = plt.colorbar(
         sm,
         ax=ax,
