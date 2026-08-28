@@ -439,4 +439,3 @@ If this framework contributes to published research, please cite:
 - this repository
 
 ---
-repository version: 2
