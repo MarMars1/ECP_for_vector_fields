@@ -1,54 +1,51 @@
-from pathlib import Path
 
 import numpy as np
 
-from src.generators.examples import build_examples
-from src.topology.experiment_runner import (
-    run_full_experiment
-)
-from src.utils.experiment import (
-    create_experiment_directory,
-)
-
-from src.utils.config_snapshot import (
-    save_config_snapshot,
-)
-
 from src.config import (
-    X_MIN,
-    X_MAX,
-    Y_MIN,
-    Y_MAX,
+    GRID_MIN,
+    GRID_MAX,
     GRID_POINTS,
     OUTPUT_DIR,
-    ENABLED_EXPERIMENT_MODES,
+    SELECTED_EXAMPLES,
 )
 
+from src.systems import build_system_examples
+from src.runner import run_full_experiment
+from src.utils.experiment import create_experiment_directory
+from src.utils.config_snapshot import save_config_snapshot
+
+def build_grid():
+    axes = [
+        np.linspace(
+            minimum,
+            maximum,
+            points,
+        )
+        for minimum, maximum, points in zip(
+            GRID_MIN,
+            GRID_MAX,
+            GRID_POINTS,
+        )
+    ]
+
+    return np.meshgrid(
+        *axes,
+    )
+
+
 def main():
+    random_seed = 42
 
-    RANDOM_SEED = 42
-    np.random.seed(RANDOM_SEED)
-
-    x = np.linspace(
-        X_MIN,
-        X_MAX,
-        GRID_POINTS,
+    np.random.seed(
+        random_seed
     )
 
-    y = np.linspace(
-        Y_MIN,
-        Y_MAX,
-        GRID_POINTS,
-    )
+    grids = build_grid()
 
-    X, Y = np.meshgrid(
-        x,
-        y,
-    )
-
-    examples, names = build_examples(
-        X,
-        Y,
+    # Generate examples
+    examples, names = build_system_examples(
+        grids,
+        selected_examples=SELECTED_EXAMPLES,
     )
 
     experiment_dir = create_experiment_directory(
@@ -57,23 +54,21 @@ def main():
 
     save_config_snapshot(
         experiment_dir,
-        RANDOM_SEED,
+        random_seed,
     )
 
+
+    # Run experiment
     run_full_experiment(
-        X=X,
-        Y=Y,
         examples=examples,
         names=names,
         output_dir=experiment_dir,
-        modes=ENABLED_EXPERIMENT_MODES,
+        grids=grids,
     )
 
     print()
-    print("================================")
     print("COMPUTATIONS FINISHED")
-    print("Results saved in ./output")
-    print("================================")
+    print(f"Results saved in {experiment_dir}")
 
 
 if __name__ == "__main__":
