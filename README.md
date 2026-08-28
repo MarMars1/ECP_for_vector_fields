@@ -1,5 +1,5 @@
 # Dynamical Systems Classification Using Euler Characteristic Profiles
-[![version](https://img.shields.io/badge/ver.-2-blue)]
+![version](https://img.shields.io/badge/ver.-2-blue)
 
 This project investigates the use of **Euler Characteristic Profiles (ECPs)** for comparing and classifying dynamical systems represented by multidimensional vector fields.
 
