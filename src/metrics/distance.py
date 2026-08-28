@@ -1,5 +1,5 @@
 """
-Distance metrics.
+Distance metrics. 
 """
 
 import numpy as np
