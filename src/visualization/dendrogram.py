@@ -1,11 +1,16 @@
 """
 Dendrogram visualization.
 """
+import matplotlib
 
+matplotlib.use("Agg")
+
+import numpy as np
 from pathlib import Path
 import matplotlib.pyplot as plt
 from scipy.cluster.hierarchy import dendrogram
-from src.metrics.clustering import linkage_matrix
+from scipy.spatial.distance import pdist, squareform
+from scipy.cluster.hierarchy import linkage, dendrogram
 
 
 def save_dendrogram(
@@ -18,10 +23,20 @@ def save_dendrogram(
     Save dendrogram figure.
     """
 
-    Z = linkage_matrix(
-        matrix,
-        method=method
-    )
+    # Identify type of matrix
+    if matrix.shape[0] == matrix.shape[1]:
+        if np.allclose(matrix, matrix.T, atol=1e-10) and np.all(np.diag(matrix) == 0):
+            #print("Using distance matrix (squareform applied).")
+            condensed_matrix = squareform(matrix)
+        else:
+            #print("Using feature matrix (pdist computed from square input).")
+            condensed_matrix = pdist(matrix, metric='euclidean')
+    else:
+        #print("Using feature matrix (pdist computed).")
+        condensed_matrix = pdist(matrix, metric='euclidean')
+
+    # Hierarchical clustering
+    Z = linkage(condensed_matrix, method=method)
 
     fig, ax = plt.subplots(
         figsize=(8, 5)
