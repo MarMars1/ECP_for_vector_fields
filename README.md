@@ -436,6 +436,19 @@ If this framework contributes to published research, please cite:
     doi = {10.1093/gigascience/giad094}
 }
 ```
-- this repository
+
+- Topological Characteristics for the Analysis of Vector Fields. New stable characteristics for discrete and continuous dynamical systems [paper](https://doi.org/10.48550/arXiv.2609.15260)
+
+```bibtex
+@misc{marszewska2026topologicalcharacteristicsanalysisvector,
+      title={Topological Characteristics for the Analysis of Vector Fields. New stable characteristics for discrete and continuous dynamical systems}, 
+      author={Marszewska, Marta; Signerska, Justyna and Dłotko, Paweł},
+      year={2026},
+      eprint={2609.15260},
+      archivePrefix={arXiv},
+      primaryClass={math.DS},
+      url={https://arxiv.org/abs/2609.15260}, 
+}
+```
 
 ---
