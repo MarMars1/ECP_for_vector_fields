@@ -121,7 +121,7 @@ and
 $$
 \mathrm{curl} F =
 \frac{\partial v}{\partial x}
--
+\-
 \frac{\partial u}{\partial y}.
 $$
 
